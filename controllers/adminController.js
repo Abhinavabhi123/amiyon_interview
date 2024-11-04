@@ -43,6 +43,7 @@ const adminLogin = async (req, res) => {
   }
 };
 
+// Add company details
 const addCompany = async (req, res) => {
   try {
     let logoPath = "";
@@ -72,6 +73,7 @@ const addCompany = async (req, res) => {
   }
 };
 
+// Fetch company details
 const getCompany = async (req, res) => {
   try {
     await Company.findAll({
@@ -84,6 +86,7 @@ const getCompany = async (req, res) => {
   }
 };
 
+// Deleting image from server when update or delete company date
 const deleteImageFromServer = (response) => {
   const segment = response.logo.split("/");
   const fullPath = `${segment[0]}\\app\\public\\${segment[segment.length - 1]}`;
@@ -96,6 +99,7 @@ const deleteImageFromServer = (response) => {
   });
 };
 
+// Deleting company details
 const deleteCompany = async (req, res) => {
   try {
     const { companyid } = req.headers;
@@ -196,7 +200,7 @@ const addEmployee = async (req, res) => {
         });
       });
     }
-    // return res.status(402).send({isSuccess:false,message:"Missing field data"})
+    return res.status(402).send({isSuccess:false,message:"Missing field data"})
   } catch (error) {
     console.error(error);
   }
